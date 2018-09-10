@@ -63,4 +63,17 @@ public void eliminar(String nombre) {
         }
     }    
     
+     public boolean existe(String nombre) {  
+        
+        boolean existe= false;
+        for(Usuario xxx:misusers)   
+        {
+            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals("conductor")) {
+            existe= true;
+
+            }
+        }
+        return existe;
+    }  
+    
 }

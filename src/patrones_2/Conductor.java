@@ -18,8 +18,8 @@ public class Conductor extends Usuario{
     
     
 
-    public Conductor(String placa, String nombre, String correo, String numero, String tipo) {
-        super(nombre, correo, numero, tipo);
+    public Conductor( String nombre, String correo, String numero) {
+        super(nombre, correo, numero, "conductor");
         this.placa = placa;
     }
 

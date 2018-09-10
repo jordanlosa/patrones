@@ -7,6 +7,7 @@ package patrones_2;
 
 import javax.swing.JOptionPane;
 import static patrones_2.Facade.miscalles;
+import static patrones_2.Facade.misusers;
 
 /**
  *
@@ -34,6 +35,9 @@ public class Patrones_2 {
         miscalles.add((Calle) c4);
         miscalles.add((Calle) c5);
         miscalles.add((Calle) c6);
+        Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
+        misusers.add(con);
+        
         
         Facade fac = new Facade();
         
@@ -44,8 +48,8 @@ public class Patrones_2 {
                                                 "1. Crear usuario \n"+
                                                 "2. Acceder al sistema \n"+
                                                 "3. Crear o registrar ruta \n"+
-                                                "4. Eliminar conductor \n"+
-                                                "5. Crear administrador \n"+
+                                                "4. Consultar rutas de un conductor \n"+
+                                                "5. Modificar ruta \n"+
                                                 "6. Modificar administrador \n"+
                                                 "7. Buscar administrador \n"+
                                                 "8. Eliminar administrador \n"+
@@ -68,10 +72,10 @@ public class Patrones_2 {
                     fac.Crear_ruta();
                 break;
                 case '4':                    
-                    
+                    fac.Rutas_Conductor();
                 break;
                 case '5':
-                    
+                    fac.Editar_Ruta();
                 break;
                 case '6':
                     
@@ -82,23 +86,17 @@ public class Patrones_2 {
                 case '8':                    
                     
                 break;
-                case 'a':
+                case '9':
                     
                 break;
-                case 'b':                    
-                    
-                break;  
-                case 'c':
-                    
-                break;
-                case 'd':                                        
+                case 'A':                                                          
                     
                 break;
                 case '0':
                     System.exit(opcion);
                 break;
                 default:
-                    JOptionPane.showMessageDialog(null,"Opcion no excitente");                    
+                    JOptionPane.showMessageDialog(null,"Opcion no existente");                    
                 break; 
             }
         }
