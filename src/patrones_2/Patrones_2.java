@@ -36,12 +36,14 @@ public class Patrones_2 {
         miscalles.add((Calle) c5);
         miscalles.add((Calle) c6);
         Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
+        Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123-456");
         misusers.add(con);
+        misusers.add(pas);
         
         
         Facade fac = new Facade();
         
-        char opcion = '*';   
+        String opcion = "*";   
         do
         {
             opcion  =  JOptionPane.showInputDialog("=========Opciones=========\n"+"¿Què desea hacer? \n"+
@@ -50,57 +52,55 @@ public class Patrones_2 {
                                                 "3. Crear o registrar ruta \n"+
                                                 "4. Consultar rutas de un conductor \n"+
                                                 "5. Modificar ruta \n"+
-                                                "6. Modificar administrador \n"+
-                                                "7. Buscar administrador \n"+
+                                                "6. Crear reserva \n"+
+                                                "7. Consultar reservas de un pasajero \n"+
                                                 "8. Eliminar administrador \n"+
-                                                "a. Crear pasajero \n"+
-                                                "b. Modificar pasajero \n"+
-                                                "c. Consultar pasajero \n"+
-                                                "d. Eliminar pasajero \n"+
+                                                "9. Crear pasajero \n"+
+                                                "10. Modificar pasajero \n"+
                                                 "0. SALIR "
-                                                ).charAt(0);
+                                                );
             
             switch (opcion)
             {
-                case '1':                                             
+                case "1":                                             
                     fac.Crear_usuario();
                 break;
-                case '2':                    
+                case "2":                    
                     fac.Acceder_sistema();
                 break;
-                case '3':
+                case "3":
                     fac.Crear_ruta();
                 break;
-                case '4':                    
+                case "4":                    
                     fac.Rutas_Conductor();
                 break;
-                case '5':
+                case "5":
                     fac.Editar_Ruta();
                 break;
-                case '6':
+                case "6":
+                    fac.Crear_reserva();
+                break;
+                case "7":                   
                     
                 break;
-                case '7':                    
+                case "8":               
                     
                 break;
-                case '8':                    
+                case "9":
                     
                 break;
-                case '9':
+                case "10":                                                         
                     
                 break;
-                case 'A':                                                          
-                    
-                break;
-                case '0':
-                    System.exit(opcion);
+                case "0":
+                    System.exit(0);
                 break;
                 default:
                     JOptionPane.showMessageDialog(null,"Opcion no existente");                    
                 break; 
             }
         }
-        while(opcion!='0');    
+        while(opcion!="0");    
     }
     
 }

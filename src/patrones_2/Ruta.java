@@ -37,7 +37,7 @@ public class Ruta implements Componente {
     
     public Ruta() {
         this.Objetos = new ArrayList<Componente>();
-        misrutas.add(this);
+        
         
     }
     public Ruta(String nombre, String conductor)
@@ -71,13 +71,18 @@ public class Ruta implements Componente {
             
     }
     
-    
-    
-    
-    
-    
     public void add(Componente c)
     {
         Objetos.add(c);
     }         
+    
+    public boolean existe(String ruta){
+        boolean existe= false;
+        for(Ruta xxx: misrutas){
+            if(xxx.getNombre().equals(ruta)){
+                existe= true;
+            }
+        }        
+    return existe;
+    }
 }

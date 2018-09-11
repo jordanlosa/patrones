@@ -63,17 +63,21 @@ public void eliminar(String nombre) {
         }
     }    
     
-     public boolean existe(String nombre) {  
+     public Usuario existe(String nombre, String tipo) {  
         
         boolean existe= false;
         for(Usuario xxx:misusers)   
         {
-            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals("conductor")) {
-            existe= true;
+            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {
+            return xxx;
 
             }
         }
-        return existe;
+        return null;
     }  
+
+    void add(Reserva res) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }

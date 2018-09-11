@@ -5,6 +5,7 @@
  */
 package patrones_2;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import static patrones_2.Facade.misusers;
 /**
@@ -13,8 +14,10 @@ import static patrones_2.Facade.misusers;
  */
 public class Pasajero extends Usuario {
     
-    public Pasajero(String nombre, String correo, String numero, String tipo) {
-        super(nombre, correo, numero, tipo);        
+    private static ArrayList<Reserva> Reservas= new ArrayList<>();
+    
+    public Pasajero(String nombre, String correo, String numero) {
+        super(nombre, correo, numero,"pasajero");        
     }
     public Pasajero() {
         super();        
@@ -52,6 +55,9 @@ public class Pasajero extends Usuario {
         }
         
     }
-    
+
+    public void add(Reserva res){
+        this.Reservas.add(res);
+    }
 
 }
