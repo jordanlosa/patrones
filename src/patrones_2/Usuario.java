@@ -20,18 +20,21 @@ abstract public class Usuario {
  
 
 
-public Usuario(String nombre, String correo, String numero,String tipo) {
+public Usuario(String nombre, String correo, String passwords,String tipo) {
         
         this.nombre = nombre;
         this.correo = correo;
-        this.password = numero;
+        this.password = password;
         this.tipo = tipo;
     }  
 public Usuario() {        
     }  
 
-abstract void adicionar(String nombre, String correo, String numero);
-abstract void modificar(String nombre, String correo, String numero);    
+abstract void adicionar(String nombre, String correo, String password);
+abstract void modificar(String nombre, String correo, String password);   
+abstract Usuario getUser(String nombre, String tipo);
+
+
 
 public void eliminar(String nombre) {
          try
@@ -63,20 +66,20 @@ public void eliminar(String nombre) {
         }
     }    
     
-     public Usuario existe(String nombre, String tipo) {  
+    public boolean existe(String nombre, String tipo) {  
         
         boolean existe= false;
         for(Usuario xxx:misusers)   
         {
             if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {
-            return xxx;
+            existe = true;
 
             }
         }
-        return null;
+        return existe ;
     }  
 
-    void add(Reserva res) {
+    public void add(Reserva res) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     

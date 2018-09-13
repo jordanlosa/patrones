@@ -47,5 +47,12 @@ public class Reserva {
     public void setP_encuentro(String P_encuentro) {
         this.P_encuentro = P_encuentro;
     }
+
+    @Override
+    public String toString() {
+        return "Reserva{" + "Pasajero=" + Pasajero + ", Ruta=" + Ruta + ", P_encuentro=" + P_encuentro + '}';
+    }
+    
+    
     
 }

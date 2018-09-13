@@ -14,27 +14,25 @@ import static patrones_2.Facade.misusers;
 public class Conductor extends Usuario{
 
         
-    private String placa;
-    
     
 
-    public Conductor( String nombre, String correo, String numero) {
-        super(nombre, correo, numero, "conductor");
-        this.placa = placa;
+    public Conductor( String nombre, String correo, String password) {
+        super(nombre, correo, password, "conductor");
+        
     }
 
     public Conductor() {
     }
             
-    public void adicionar(String nombre, String correo, String numero) {
+    public void adicionar(String nombre, String correo, String password) {
         this.nombre = nombre;
         this.correo =correo;
-        this.password = numero;
+        this.password = password;
         this.tipo = "conductor";
         misusers.add(this);                
     }    
     
-    void modificar(String nombre, String correo, String numero) {        
+    public void modificar(String nombre, String correo, String password) {        
         try
         {
                         
@@ -45,7 +43,7 @@ public class Conductor extends Usuario{
                 {         
                    encontrado= true;
                    xxx.correo = correo;                   
-                   xxx.password = numero;
+                   xxx.password = password;
                    System.out.print("Modificado");
                 }            
             }
@@ -58,5 +56,10 @@ public class Conductor extends Usuario{
         }
         
     }
-    
+
+    @Override
+    Usuario getUser(String nombre, String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 }

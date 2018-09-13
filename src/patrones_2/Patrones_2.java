@@ -52,11 +52,11 @@ public class Patrones_2 {
                                                 "3. Crear o registrar ruta \n"+
                                                 "4. Consultar rutas de un conductor \n"+
                                                 "5. Modificar ruta \n"+
-                                                "6. Crear reserva \n"+
-                                                "7. Consultar reservas de un pasajero \n"+
-                                                "8. Eliminar administrador \n"+
-                                                "9. Crear pasajero \n"+
-                                                "10. Modificar pasajero \n"+
+                                                "6. Eliminar ruta \n"+
+                                                "7. Crear reserva\n"+
+                                                "8. Consultar reservas de un pasajero \n"+
+                                                "9. Modificar reserva \n"+
+                                                "10. Eliminar reserva\n"+
                                                 "0. SALIR "
                                                 );
             
@@ -78,13 +78,13 @@ public class Patrones_2 {
                     fac.Editar_Ruta();
                 break;
                 case "6":
-                    fac.Crear_reserva();
+                    
                 break;
                 case "7":                   
-                    
+                    fac.Crear_reserva();
                 break;
                 case "8":               
-                    
+                    fac.Consultar_reservas();
                 break;
                 case "9":
                     

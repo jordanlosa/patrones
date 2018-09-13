@@ -17,7 +17,7 @@ public class Facade {
     public static ArrayList<Usuario> misusers = new ArrayList<>();
     public static ArrayList<Calle> miscalles = new ArrayList<>();
     public static ArrayList<Ruta> misrutas= new ArrayList<>();
-    public static ArrayList<Ruta> misreservas= new ArrayList<>();
+    public static ArrayList<Reserva> misreservas= new ArrayList<>();
     
     Usuario con = new Conductor();
     Usuario pas= new Pasajero();
@@ -99,8 +99,8 @@ public class Facade {
         String callenombre;
         String conductor = JOptionPane.showInputDialog("Ingrese el nombre del conductor");
 
-        this.con = this.con.existe(conductor, "conductor");
-        if (this.con!=null) {
+        boolean existe = this.con.existe(conductor, "conductor");
+        if (existe) {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
             Ruta nurut = new Ruta(nombre, conductor);
             Componente calle;
@@ -141,7 +141,7 @@ public class Facade {
             JOptionPane.showMessageDialog(null, "El conductor " + conductor + " no existe");
             this.Crear_ruta();
         }
-        this.con=null;
+        
     }
 
     public void Acceder_sistema() {
@@ -184,8 +184,8 @@ public class Facade {
     
     public void Rutas_Conductor (){
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        this.con = this.con.existe(nombre, "conductor");
-        if (this.con!=null){
+        boolean existe = this.con.existe(nombre, "conductor");
+        if (existe){
             for (Ruta xxx:misrutas){
                 if (xxx.getConductor().equals(nombre)){
                 xxx.Mostrar();
@@ -194,13 +194,13 @@ public class Facade {
             }
         }
         else System.out.println("El conductor "+nombre+ " no existe");
-        this.con=null;
+ 
     }
     
     public void Editar_Ruta() {
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        this.con = this.con.existe(nombre, "conductor");
-        if (this.con!=null) {
+        boolean existe = this.con.existe(nombre, "conductor");
+        if (existe) {
             String ruta = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
             for (Ruta xxx : misrutas) {
                 if (xxx.getConductor().equals(nombre) && xxx.getNombre().equals(ruta)) {
@@ -264,8 +264,8 @@ public class Facade {
     }
     public void Crear_reserva() {
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        this.pas = this.pas.existe(nombre, "pasajero");
-        if (this.pas != null) {
+        boolean existe = this.pas.existe(nombre, "pasajero");
+        if (existe) {
             String ruta = JOptionPane.showInputDialog("Escriba el nombre de la ruta");
             if (this.ruta.existe(ruta)) {
                 String p_encuentro = JOptionPane.showInputDialog("Ingrese el punto de encuentro");
@@ -278,20 +278,24 @@ public class Facade {
             JOptionPane.showMessageDialog(null, "El pasajero no existe");
             this.Crear_reserva();
         }
-        this.pas = null;
+        
     }
     
      public void Consultar_reservas() {
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        this.pas = this.pas.existe(nombre, "pasajero");
-        if (this.pas != null) {
-           
-
+        boolean existe = this.pas.existe(nombre, "pasajero");
+        if (existe) {
+           this.pas= this.pas.getUser(nombre, "pasajero");
+           Pasajero pasajero = (Pasajero) this.pas;
+           ArrayList<Reserva> reservas = pasajero.getReservas();
+           for(Reserva xxx:reservas){
+               System.out.println(xxx.toString());
+           }
         } else {
             JOptionPane.showMessageDialog(null, "El pasajero no existe");
             this.Crear_reserva();
         }
-        this.pas = null;
+        
     }
 
 }

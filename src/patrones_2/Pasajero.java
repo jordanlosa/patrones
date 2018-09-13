@@ -15,23 +15,27 @@ import static patrones_2.Facade.misusers;
 public class Pasajero extends Usuario {
     
     private static ArrayList<Reserva> Reservas= new ArrayList<>();
+
+    public ArrayList<Reserva> getReservas() {
+        return Reservas;
+    }
     
-    public Pasajero(String nombre, String correo, String numero) {
-        super(nombre, correo, numero,"pasajero");        
+    public Pasajero(String nombre, String correo, String password) {
+        super(nombre, correo, password,"pasajero");        
     }
     public Pasajero() {
         super();        
     }
                    
-     public void adicionar(String nombre, String correo, String numero) {
+     public void adicionar(String nombre, String correo, String password) {
         this.nombre=nombre;
         this.correo=correo;
-        this.password=numero;
+        this.password=password;
         this.tipo = "pasajero";
         misusers.add(this);                
     }    
     
-    void modificar(String nombre, String correo, String numero) {        
+    void modificar(String nombre, String correo, String password) {        
         try
         {
                         
@@ -42,7 +46,7 @@ public class Pasajero extends Usuario {
                 {         
                    encontrado= true;
                    xxx.correo = correo;                   
-                   xxx.password = numero;
+                   xxx.password = password;
                    System.out.print("Modificado");
                 }            
             }
@@ -59,5 +63,19 @@ public class Pasajero extends Usuario {
     public void add(Reserva res){
         this.Reservas.add(res);
     }
+
+   
+    public Usuario getUser(String nombre, String tipo) {
+        for(Usuario xxx:misusers)   
+        {
+            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {
+            return xxx;
+            }
+        }
+        
+        return null;
+    }
+
+    
 
 }

@@ -37,5 +37,10 @@ public class AdaptadorAdmin extends Usuario {
     void modificar(String nombre, String correo, String numero) {
         this.admin.update(nombre, correo, numero);
     }
+
+    @Override
+    Usuario getUser(String nombre, String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
