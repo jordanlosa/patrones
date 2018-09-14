@@ -281,7 +281,7 @@ public class Facade {
         
     }
     
-     public void Consultar_reservas() {
+    public void Consultar_reservas() {
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
         boolean existe = this.pas.existe(nombre, "pasajero");
         if (existe) {
@@ -295,6 +295,10 @@ public class Facade {
             JOptionPane.showMessageDialog(null, "El pasajero no existe");
             this.Crear_reserva();
         }
+        
+    }
+     
+    public void Eliminar_ruta(){
         
     }
 

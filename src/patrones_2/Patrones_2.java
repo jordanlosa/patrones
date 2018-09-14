@@ -78,7 +78,7 @@ public class Patrones_2 {
                     fac.Editar_Ruta();
                 break;
                 case "6":
-                    
+                    fac.Eliminar_ruta();
                 break;
                 case "7":                   
                     fac.Crear_reserva();
