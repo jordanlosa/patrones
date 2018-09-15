@@ -308,6 +308,14 @@ public class Facade {
            for(Reserva xxx:reservas){
                System.out.println(xxx.toString());
            }
+           String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre del ruta ha modificar");           
+           for(Reserva xxx:reservas){
+               System.out.print(xxx.getRuta());
+               if(xxx.getRuta().equals(nombreRuta)){
+                   String posicionNueva = JOptionPane.showInputDialog("Escriba el nuevo punto de encuentro");
+                   xxx.setP_encuentro(posicionNueva);
+               }                        
+           }           
         } else {
             JOptionPane.showMessageDialog(null, "El pasajero no existe");
             this.Crear_reserva();
