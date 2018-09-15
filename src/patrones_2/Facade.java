@@ -296,10 +296,47 @@ public class Facade {
             this.Crear_reserva();
         }
         
+    }   
+    public void Modificar_reserva()
+    {
+        String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
+        boolean existe = this.pas.existe(nombre, "pasajero");
+        if (existe) {
+           this.pas= this.pas.getUser(nombre, "pasajero");
+           Pasajero pasajero = (Pasajero) this.pas;
+           ArrayList<Reserva> reservas = pasajero.getReservas();
+           for(Reserva xxx:reservas){
+               System.out.println(xxx.toString());
+           }
+        } else {
+            JOptionPane.showMessageDialog(null, "El pasajero no existe");
+            this.Crear_reserva();
+        }
     }
-     
     public void Eliminar_ruta(){
-        
+        String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
+        boolean existe = this.con.existe(nombre, "conductor");
+        boolean existeRuta = false;
+        if (existe){
+            for(Ruta xxx:misrutas){
+                if (xxx.getConductor().equals(nombre)){
+                    xxx.Mostrar();
+                }
+                else System.out.println("El conductor "+nombre+ " no tiene rutas asignadas aún");
+            }
+            String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre de la Ruta que desea eliminar");
+            for (Ruta xxx:misrutas){
+                if (xxx.getNombre().equals(nombreRuta)){
+                    existeRuta = true;
+                    misrutas.remove(xxx);
+                }                
+            }
+            if(!existeRuta)
+            {
+                System.out.println("La ruta "+nombreRuta+" no existe");
+            }
+        }
+        else System.out.println("El conductor "+nombre+ " no existe");        
     }
 
 }

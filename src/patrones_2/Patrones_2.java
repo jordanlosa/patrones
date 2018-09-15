@@ -87,7 +87,7 @@ public class Patrones_2 {
                     fac.Consultar_reservas();
                 break;
                 case "9":
-                    
+                    fac.Modificar_reserva();
                 break;
                 case "10":                                                         
                     
