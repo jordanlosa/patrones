@@ -22,6 +22,4 @@ abstract public class PagoPSE implements Component {
     return this.SpecialPago.showCuenta();
     }
     
-    public abstract void setValores(String parametros);
-    
 }
