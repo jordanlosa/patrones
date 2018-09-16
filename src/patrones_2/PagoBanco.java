@@ -11,13 +11,18 @@ package patrones_2;
  */
 public class PagoBanco extends PagoPSE{
     
-    String numeroCuenta, tipocuenta, cedula, contraseña;
+    String numeroCuenta, tipoCuenta, cedula, contraseña;
 
-    public PagoBanco(String numeroCuenta, String cedula, String contraseña, Component SpecialPago) {
+    public PagoBanco(String numeroCuenta, String cedula,String tipocuenta, String contraseña, Component SpecialPago) {
         super(SpecialPago);
         this.numeroCuenta = numeroCuenta;
+        this.tipoCuenta= tipocuenta;
         this.cedula = cedula;
         this.contraseña = contraseña;
+    }
+
+    PagoBanco(Component com) {
+        super(com);
     }
     
     public String showCuenta(){
@@ -25,14 +30,22 @@ public class PagoBanco extends PagoPSE{
     }
     
     public String addBanco(){
-        return "#Cuenta: "+this.numeroCuenta+" Tipo de cuenta: "+this.tipocuenta+ "Cedula: "+this.cedula;
+        return " [#Cuenta: "+this.numeroCuenta+" - Tipo de cuenta: "+this.tipoCuenta+ " - Cedula: "+this.cedula+"] ";
         
     }
 
     @Override
-    public void setValores(String parametros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+
+    public void setComponents(String parametros) {
+        String[] parts = parametros.split("-");
+        this.numeroCuenta=parts[0];
+        this.tipoCuenta=parts[1];
+        this.cedula=parts [2];
+        this.contraseña=parts[3];
+        
+
     }
+    
     
     
 }

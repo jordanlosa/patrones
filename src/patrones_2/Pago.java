@@ -29,15 +29,19 @@ public class Pago implements Component {
     }
 
     @Override
-    public void setValores(String parametros){
-       String[] parts = parametros.split("-");
-       this.valor=Integer.parseInt(parts[0]);
-       this.conductor=parts[1];
-       this.pasajero=parts[2];
+    public void setComponents(String parametros) {
+        String[] parts = parametros.split("-");
+        this.valor=Integer.parseInt(parts[0]);
+        this.conductor=parts[1];
+        this.pasajero=parts[2];
     }
+
+    
+   
+  }
 
     
    
     
     
-}
+

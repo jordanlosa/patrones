@@ -21,5 +21,5 @@ abstract public class PagoPSE implements Component {
     public String showCuenta(){
     return this.SpecialPago.showCuenta();
     }
-    
+
 }

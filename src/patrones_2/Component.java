@@ -12,5 +12,5 @@ package patrones_2;
 public interface Component {
     
    public String showCuenta();
-   public void setValores(String parametros);
+   public void setComponents(String parametros);
 }

@@ -26,12 +26,28 @@ public class PagoTC extends PagoPSE{
     }
     
     public String addTarjeta(){
-        return " Tarjeta de credito: "+this.numeroTarjeta+"- Fecha vencimiento:"+this.fechaVen;
+        return " [Tarjeta de credito: "+this.numeroTarjeta+" - Fecha vencimiento:"+this.fechaVen+"] ";
+    }
+
+    public PagoTC(Component SpecialPago) {
+        super(SpecialPago);
     }
 
     @Override
-    public void setValores(String parametros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void setComponents(String parametros) {
+        String[] parts = parametros.split("-");
+        this.numeroTarjeta=parts[0];
+        this.codSeg=parts[1];
+        this.fechaVen=parts[2];
     }
+
+    
+
+    
+
+    
+
+    
+    
     
 }
