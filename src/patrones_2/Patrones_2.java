@@ -90,7 +90,7 @@ public class Patrones_2 {
                     fac.Modificar_reserva();
                 break;
                 case "10":                                                         
-                    
+                    fac.Eliminar_reserva();
                 break;
                 case "0":
                     System.exit(0);
