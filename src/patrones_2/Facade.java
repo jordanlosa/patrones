@@ -309,8 +309,7 @@ public class Facade {
                System.out.println(xxx.toString());
            }
            String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre del ruta ha modificar");           
-           for(Reserva xxx:reservas){
-               System.out.print(xxx.getRuta());
+           for(Reserva xxx:reservas){               
                if(xxx.getRuta().equals(nombreRuta)){
                    String posicionNueva = JOptionPane.showInputDialog("Escriba el nuevo punto de encuentro");
                    xxx.setP_encuentro(posicionNueva);
