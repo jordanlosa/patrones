@@ -175,7 +175,7 @@ public class Facade {
 
     private Calle Buscar(String nombre) {
         for (Calle xxx : miscalles) {
-            if (xxx.getNombre().equals(nombre)) {
+            if (xxx.getNombre().equalsIgnoreCase(nombre)) {
                 return xxx;
             }
         }
@@ -187,7 +187,7 @@ public class Facade {
         boolean existe = this.con.existe(nombre, "conductor");
         if (existe){
             for (Ruta xxx:misrutas){
-                if (xxx.getConductor().equals(nombre)){
+                if (xxx.getConductor().equalsIgnoreCase(nombre)){
                 xxx.Mostrar();
                 }
                 else System.out.println("El conductor "+nombre+ " no tiene rutas asignadas aún");
@@ -203,7 +203,7 @@ public class Facade {
         if (existe) {
             String ruta = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
             for (Ruta xxx : misrutas) {
-                if (xxx.getConductor().equals(nombre) && xxx.getNombre().equals(ruta)) {
+                if (xxx.getConductor().equalsIgnoreCase(nombre) && xxx.getNombre().equalsIgnoreCase(ruta)) {
                     
                     double xo, yo, xd, yd;
                     double Distancia, Tiempo;
@@ -241,7 +241,7 @@ public class Facade {
                             case '3':
                                 callenombre = JOptionPane.showInputDialog("Ingrese el nombre de la calle que desea eliminar");
                                 for (Calle street: miscalles){
-                                    if(street.getNombre().equals(callenombre)){
+                                    if(street.getNombre().equalsIgnoreCase(callenombre)){
                                         xxx.Eliminar(street);
                                     }
                                 }
@@ -269,14 +269,14 @@ public class Facade {
         boolean existeRuta = false;
         if (existe){
             for(Ruta xxx:misrutas){
-                if (xxx.getConductor().equals(nombre)){
+                if (xxx.getConductor().equalsIgnoreCase(nombre)){
                     xxx.Mostrar();
                 }
                 else System.out.println("El conductor "+nombre+ " no tiene rutas asignadas aún");
             }
             String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre de la Ruta que desea eliminar");
             for (Ruta xxx:misrutas){
-                if (xxx.getNombre().equals(nombreRuta)){
+                if (xxx.getNombre().equalsIgnoreCase(nombreRuta)){
                     existeRuta = true;
                     misrutas.remove(xxx);
                 }                
@@ -336,7 +336,7 @@ public class Facade {
            }
            String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre del ruta ha modificar");           
            for(Reserva xxx:reservas){               
-               if(xxx.getRuta().equals(nombreRuta)){
+               if(xxx.getRuta().equalsIgnoreCase(nombreRuta)){
                    String posicionNueva = JOptionPane.showInputDialog("Escriba el nuevo punto de encuentro");
                    xxx.setP_encuentro(posicionNueva);
                }                        
@@ -384,9 +384,9 @@ public class Facade {
             }
             String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre del ruta para pagar la reserva");
             for (Reserva xxx : reservas) {
-                if (xxx.getRuta().equals(nombreRuta)) {
+                if (xxx.getRuta().equalsIgnoreCase(nombreRuta)) {
                     for (Ruta rrr : misrutas) {
-                        if (nombreRuta.equals(rrr.getNombre())) {
+                        if (nombreRuta.equalsIgnoreCase(rrr.getNombre())) {
                             conductor = rrr.getConductor();
                         }
                     }
