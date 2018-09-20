@@ -411,7 +411,8 @@ public class Facade {
                                 String fechaV= JOptionPane.showInputDialog("Ingrese la fecha de vencimiento");
                                 String parametros =valor+"-"+conductor+"-"+nombre;
                                 pago.setValores(parametros);
-                                Component com=  new PagoTC(numT,codSeg,fechaV, pago);
+                                Component com=  new PagoTC(pago);
+                                
                                 System.out.print(com.showCuenta());
                                 break;
                             case '2':

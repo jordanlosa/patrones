@@ -14,11 +14,8 @@ public class PagoTC extends PagoPSE{
     
     String numeroTarjeta, codSeg, fechaVen;
 
-    public PagoTC(String numeroTarjeta, String codSeg, String fechaVen, Component SpecialPago) {
+    public PagoTC(Component SpecialPago) {
         super(SpecialPago);
-        this.numeroTarjeta = numeroTarjeta;
-        this.codSeg = codSeg;
-        this.fechaVen = fechaVen;
     }
     
     public String showCuenta(){
@@ -31,7 +28,11 @@ public class PagoTC extends PagoPSE{
 
     @Override
     public void setValores(String parametros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String[] parts = parametros.split("-");
+       this.numeroTarjeta = parts[0];
+       this.codSeg = parts[1];
+       this.fechaVen = parts[2];
+       
     }
     
 }

@@ -31,8 +31,14 @@ public class PagoBanco extends PagoPSE{
 
     @Override
     public void setValores(String parametros) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+       String[] parts = parametros.split("-");
+       this.numeroCuenta = parts[0];
+       this.tipocuenta = parts[1];
+       this.cedula = parts[2];
+       this.contraseña = parts[3];
     }
+    
+    
     
     
 }
