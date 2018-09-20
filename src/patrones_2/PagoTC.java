@@ -14,8 +14,11 @@ public class PagoTC extends PagoPSE{
     
     String numeroTarjeta, codSeg, fechaVen;
 
-    public PagoTC(Component SpecialPago) {
+    public PagoTC(String numeroTarjeta, String codSeg, String fechaVen, Component SpecialPago) {
         super(SpecialPago);
+        this.numeroTarjeta = numeroTarjeta;
+        this.codSeg = codSeg;
+        this.fechaVen = fechaVen;
     }
     
     public String showCuenta(){
@@ -23,16 +26,28 @@ public class PagoTC extends PagoPSE{
     }
     
     public String addTarjeta(){
-        return " Tarjeta de credito: "+this.numeroTarjeta+"- Fecha vencimiento:"+this.fechaVen;
+        return " [Tarjeta de credito: "+this.numeroTarjeta+" - Fecha vencimiento:"+this.fechaVen+"] ";
+    }
+
+    public PagoTC(Component SpecialPago) {
+        super(SpecialPago);
     }
 
     @Override
-    public void setValores(String parametros) {
-       String[] parts = parametros.split("-");
-       this.numeroTarjeta = parts[0];
-       this.codSeg = parts[1];
-       this.fechaVen = parts[2];
-       
+    public void setComponents(String parametros) {
+        String[] parts = parametros.split("-");
+        this.numeroTarjeta=parts[0];
+        this.codSeg=parts[1];
+        this.fechaVen=parts[2];
     }
+
+    
+
+    
+
+    
+
+    
+    
     
 }
