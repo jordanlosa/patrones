@@ -10,6 +10,6 @@ package patrones_2;
  * @author JORDAN
  */
 public interface Componente {
-    public void Mostrar();
+    public String Mostrar();
     
 }

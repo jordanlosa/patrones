@@ -33,8 +33,8 @@ public class Calle implements Componente {
     }
     
     @Override
-    public void Mostrar() {
-        System.out.println("Calle{" + "Nombre=" + Nombre + ", xo=" + xo + ", yo=" + yo + ", xd=" + xd + ", yd=" + yd + ", Distancia=" + Distancia + ", Tiempo=" + Tiempo + '}');
+    public String Mostrar() {
+        return "Calle{" + "Nombre=" + Nombre + ", xo=" + xo + ", yo=" + yo + ", xd=" + xd + ", yd=" + yd + ", Distancia=" + Distancia + ", Tiempo=" + Tiempo + '}';
     }
 
     public String getNombre() {

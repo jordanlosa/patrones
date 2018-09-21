@@ -6,7 +6,6 @@
 package patrones_2;
 
 import javax.swing.JOptionPane;
-import static patrones_2.Facade.miscalles;
 import static patrones_2.Facade.misusers;
 
 /**
@@ -29,12 +28,16 @@ public class Patrones_2 {
         Componente c4 = new Calle("Calle4",78,98,67,54,53,52);
         Componente c5 = new Calle("Calle5",78,98,67,54,53,52);
         Componente c6 = new Calle("Calle6",78,98,67,54,53,52);
-        miscalles.add((Calle) c1);
-        miscalles.add((Calle) c2);
-        miscalles.add((Calle) c3);
-        miscalles.add((Calle) c4);
-        miscalles.add((Calle) c5);
-        miscalles.add((Calle) c6);
+        
+        Ruta rut = new Ruta();
+        rut.add(c1);
+        rut.add(c2);
+        rut.add(c3);
+        rut.add(c4);
+        rut.add(c5);
+        rut.add(c6);
+        
+       
         Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
         Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123-456");
         misusers.add(con);

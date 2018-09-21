@@ -50,22 +50,21 @@ public class Ruta implements Componente {
 
     
     @Override
-    public void Mostrar() {
-        
-        System.out.println("El nombre de la ruta es: "+this.Nombre);
-        System.out.println("El conductor es: "+this.Conductor);
+    public String Mostrar() {
+        String Ruta = "";
+        Ruta = Ruta + "El nombre de la ruta es: "+this.Nombre + "\n" +
+        "El conductor es: "+this.Conductor + "\n";               
         for(Componente c:this.Objetos) 
         {                       
-            c.Mostrar();            
+            Ruta = Ruta + c.Mostrar() + "\n";            
         }
-        
-        System.out.println("Fin de ruta");
+        return Ruta;       
     }
     
     public void Eliminar(Componente componente) {        
         for(Componente c:this.Objetos) {
             if (c.equals(componente))   {           
-            this.Objetos.remove(componente);
+                this.Objetos.remove(componente);
             }
         }
             
@@ -74,7 +73,18 @@ public class Ruta implements Componente {
     public void add(Componente c)
     {
         Objetos.add(c);
-    }         
+    } 
+    public Componente getCalle(String calle){
+        Componente com = null;
+        for(Componente xxx:Objetos){
+            Calle calle3 = (Calle) xxx;
+            if(calle3.getNombre().equalsIgnoreCase(calle))
+            {
+                com = xxx;
+            }            
+        }
+        return com;        
+    }
     
     public boolean existe(String ruta){
         boolean existe= false;
