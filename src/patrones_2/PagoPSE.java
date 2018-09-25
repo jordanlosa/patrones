@@ -12,6 +12,9 @@ package patrones_2;
 abstract public class PagoPSE implements Component {
     
     protected Component SpecialPago;
+    String Confirmacion_pago;
+    
+    abstract public void setComponents(String parametros);
     
     public PagoPSE (Component SpecialPago){
         this.SpecialPago=SpecialPago;
@@ -19,7 +22,13 @@ abstract public class PagoPSE implements Component {
     }
     
     public String showCuenta(){
-        return this.SpecialPago.showCuenta();
+        return this.SpecialPago.showCuenta()+this.addPagoPSE();
     }
+    
+    public String addPagoPSE(){
+        return " [Confirmacion de pago: "+this.Confirmacion_pago+"] ";
+    }
+
+    
 
 }

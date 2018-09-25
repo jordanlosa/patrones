@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Administrador {    
 
-    //adaptadorAdmin adm= new adaptadorAdmin();
+    AdaptadorAdmin adm= new AdaptadorAdmin();
     public Administrador() {
         
     }            
@@ -23,8 +23,9 @@ public class Administrador {
     {       
         adm.nombre=nombre;
         adm.correo=correo;
-        adm.numero=numero;
-        f.addusu(this);        
+        adm.password=numero;
+        adm.tipo = "Administrador";
+        f.addusu(adm);
     }
     public void read(Facade f)
     {
