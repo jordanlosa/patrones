@@ -26,6 +26,7 @@ public class Pasajero extends Usuario {
         super();        
     }
                    
+    @Override
      public void adicionar(String nombre, String correo, String password,Facade f) {
         this.nombre=nombre;
         this.correo=correo;
@@ -34,8 +35,16 @@ public class Pasajero extends Usuario {
         Facade fac = f;
         f.addusu(this);        
     }    
-    
-    void modificar(String nombre, String correo, String password) {        
+             
+
+    public void add(Reserva res){
+        this.Reservas.add(res);
+    }          
+
+    @Override
+    void modificar(String nombre, String correo, String password, Facade f) {
+        Facade fac = f;
+        ArrayList<Usuario> misusers = fac.getMisusers();
         try
         {
                         
@@ -57,15 +66,12 @@ public class Pasajero extends Usuario {
         {
             System.out.println("Error <<<<<<<<<<<<<<<<<<<<<<<" + e);
         }
-        
     }
 
-    public void add(Reserva res){
-        this.Reservas.add(res);
-    }
-
-   
-    public Usuario getUser(String nombre, String tipo) {
+    @Override
+    Usuario getUser(String nombre, String tipo,Facade f) {
+        Facade fac= f;
+        ArrayList<Usuario> misusers = fac.getMisusers();
         for(Usuario xxx:misusers)   
         {
             if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {

@@ -6,7 +6,7 @@
 package patrones_2;
 
 import java.util.ArrayList;
-import static patrones_2.Facade.misusers;
+
 /**
  *
  * @author JORDAN
@@ -30,9 +30,9 @@ public Usuario(String nombre, String correo, String passwords,String tipo) {
 public Usuario() {        
     }  
 
-abstract void adicionar(String nombre, String correo, String password);
-abstract void modificar(String nombre, String correo, String password);   
-abstract Usuario getUser(String nombre, String tipo);
+abstract void adicionar(String nombre, String correo, String password, Facade f);
+abstract void modificar(String nombre, String correo, String password, Facade f);   
+abstract Usuario getUser(String nombre, String tipo, Facade f);
 
 
 
@@ -56,7 +56,9 @@ public void eliminar(String nombre, Facade f) {
         }
     }
 
-    public void buscar(String nombre) {        
+    public void buscar(String nombre, Facade f) {        
+        Facade fac = f;
+      ArrayList<Usuario> misusers = fac.getMisusers();
         for(Usuario xxx:misusers)   
         {
             if (xxx.nombre.equals(nombre)) {

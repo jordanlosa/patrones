@@ -5,8 +5,9 @@
  */
 package patrones_2;
 
+import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static patrones_2.Facade.misusers;
+
 /**
  *
  * @author JORDAN
@@ -24,15 +25,17 @@ public class Conductor extends Usuario{
     public Conductor() {
     }
             
-    public void adicionar(String nombre, String correo, String password) {
+    public void adicionar(String nombre, String correo, String password, Facade f) {                
         this.nombre = nombre;
         this.correo =correo;
         this.password = password;
         this.tipo = "conductor";
-        misusers.add(this);                
+        f.addusu(this);        
     }    
     
-    public void modificar(String nombre, String correo, String password) {        
+    public void modificar(String nombre, String correo, String password, Facade f) {        
+        Facade fac = f;
+        ArrayList<Usuario> misusers = fac.getMisusers();
         try
         {
                         
@@ -58,7 +61,7 @@ public class Conductor extends Usuario{
     }
 
     @Override
-    Usuario getUser(String nombre, String tipo) {
+    Usuario getUser(String nombre, String tipo, Facade f) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

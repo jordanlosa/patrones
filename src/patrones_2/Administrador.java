@@ -19,15 +19,17 @@ public class Administrador {
     public Administrador() {
         
     }            
-    public void create(String nombre, String correo, String numero)            
-    {
-        /*adm.nombre=nombre;
+    public void create(String nombre, String correo, String numero,Facade f)            
+    {       
+        adm.nombre=nombre;
         adm.correo=correo;
         adm.numero=numero;
-        misusers.add(adm);*/
+        f.addusu(this);        
     }
-    /*public void read()
+    public void read(Facade f)
     {
+        Facade fac = f;
+        ArrayList<Usuario> misusers = fac.getMisusers();
         for(int x=0;x<misusers.size();x++)
         {
             System.out.println(misusers.get(x).nombre);
@@ -35,7 +37,7 @@ public class Administrador {
               System.out.println(misusers.get(x).password);
                System.out.println(misusers.get(x).tipo);
         }
-    }*/
+    }
     public void update(String nombre, String correo, String numero,Facade f)
     {
         Facade fac = f;
