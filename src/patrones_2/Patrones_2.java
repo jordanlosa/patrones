@@ -6,7 +6,7 @@
 package patrones_2;
 
 import javax.swing.JOptionPane;
-import static patrones_2.Facade.misusers;
+
 
 /**
  *
@@ -37,15 +37,11 @@ public class Patrones_2 {
         rut.add(c5);
         rut.add(c6);
         
-       
+       Facade fac = new Facade();
         Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
         Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123-456");
-        misusers.add(con);
-        misusers.add(pas);
-        
-        
-        Facade fac = new Facade();
-        
+        fac.addusu(pas);
+        fac.addusu(con);        
         String opcion = "*";   
         do
         {

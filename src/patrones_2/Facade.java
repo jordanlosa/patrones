@@ -14,13 +14,12 @@ import javax.swing.JOptionPane;
  */
 public class Facade {
 
-    public static ArrayList<Usuario> misusers = new ArrayList<>();
-    //public static ArrayList<Calle> miscalles = new ArrayList<>();
-    public static ArrayList<Ruta> misrutas= new ArrayList<>();
-    public static ArrayList<Reserva> misreservas= new ArrayList<>();
+    private static ArrayList<Usuario> misusers = new ArrayList<>();    
+    private static ArrayList<Ruta> misrutas= new ArrayList<>();
+    private static ArrayList<Reserva> misreservas= new ArrayList<>();
     
     
-    Ruta ruta= new Ruta();
+    
 
     public void Crear_usuario() {
 
@@ -58,7 +57,7 @@ public class Facade {
                     con.buscar(JOptionPane.showInputDialog("nombre"));
                     break;
                 case '4':
-                    con.eliminar(JOptionPane.showInputDialog("nombre"));
+                    con.eliminar(JOptionPane.showInputDialog("nombre"),this);
                     break;
                 case '5':
                     admin.adicionar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"));
@@ -70,7 +69,7 @@ public class Facade {
                     admin.buscar(JOptionPane.showInputDialog("nombre"));
                     break;
                 case '8':
-                    admin.eliminar(JOptionPane.showInputDialog("nombre"));
+                    admin.eliminar(JOptionPane.showInputDialog("nombre"),this);
                     break;
                 case 'a':
                     pas.adicionar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"));
@@ -82,7 +81,7 @@ public class Facade {
                     pas.buscar(JOptionPane.showInputDialog("nombre"));
                     break;
                 case 'd':
-                    pas.eliminar(JOptionPane.showInputDialog("nombre"));
+                    pas.eliminar(JOptionPane.showInputDialog("nombre"),this);
                     break;
                 case '0':
                     JOptionPane.showMessageDialog(null, "Programa terminado....................");
@@ -93,6 +92,20 @@ public class Facade {
             }
         } while (opcion != '0');
     }
+    
+     private boolean existe(String nombre, String tipo) {  
+        
+        boolean existe= false;
+        for(Usuario xxx:misusers)   
+        {
+            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {
+            existe = true;
+
+            }
+        }
+        return existe ;
+    }  
+
 
     public void Crear_ruta() {
 
@@ -103,10 +116,10 @@ public class Facade {
         Usuario pas= new Pasajero();
         String conductor = JOptionPane.showInputDialog("Ingrese el nombre del conductor");
 
-        boolean existe = con.existe(conductor, "conductor");
+        boolean existe = this.existe(conductor, "conductor");
         if (existe) {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
-            Ruta nurut = new Ruta(nombre, conductor);
+            Ruta nurut = new Ruta(nombre, conductor,this);
             Componente calle;
             char opcion = '*';
             do {
@@ -181,10 +194,10 @@ public class Facade {
         Usuario con = new Conductor();
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        boolean existe = con.existe(nombre, "conductor");
+        boolean existe = this.existe(nombre, "conductor");
         if (existe){
             for (Ruta xxx:misrutas){
-                if (xxx.getConductor().equals(nombre)){
+                if (xxx.getConductor().equalsIgnoreCase(nombre)){
                 xxx.Mostrar();
                 }
                 else System.out.println("El conductor "+nombre+ " no tiene rutas asignadas aún");
@@ -198,11 +211,11 @@ public class Facade {
         Usuario con = new Conductor();
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        boolean existe = con.existe(nombre, "conductor");
+        boolean existe = this.existe(nombre, "conductor");
         if (existe) {
             String ruta = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
             for (Ruta xxx : misrutas) {
-                if (xxx.getConductor().equals(nombre) && xxx.getNombre().equals(ruta)) {
+                if (xxx.getConductor().equalsIgnoreCase(nombre) && xxx.getNombre().equalsIgnoreCase(ruta)) {
                     
                     double xo, yo, xd, yd;
                     double Distancia, Tiempo;
@@ -238,8 +251,9 @@ public class Facade {
                                 xxx.Mostrar();
                                 break;
                             case '3':
-                                callenombre = JOptionPane.showInputDialog("Ingrese el nombre de la calle que desea eliminar");                                                                
+                                callenombre = JOptionPane.showInputDialog("Ingrese el nombre de la calle que desea eliminar");
                                 if(!(xxx.getCalle(callenombre)==null)) xxx.Eliminar(xxx.getCalle(callenombre));
+                                
                                 break;    
                             case '0':
                                 JOptionPane.showMessageDialog(null, "Atrás");
@@ -261,18 +275,18 @@ public class Facade {
          Usuario con = new Conductor();
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        boolean existe = con.existe(nombre, "conductor");
+        boolean existe = this.existe(nombre, "conductor");
         boolean existeRuta = false;
         if (existe){
             for(Ruta xxx:misrutas){
-                if (xxx.getConductor().equals(nombre)){
+                if (xxx.getConductor().equalsIgnoreCase(nombre)){
                     xxx.Mostrar();
                 }
                 else System.out.println("El conductor "+nombre+ " no tiene rutas asignadas aún");
             }
             String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre de la Ruta que desea eliminar");
             for (Ruta xxx:misrutas){
-                if (xxx.getNombre().equals(nombreRuta)){
+                if (xxx.getNombre().equalsIgnoreCase(nombreRuta)){
                     existeRuta = true;
                     misrutas.remove(xxx);
                 }                
@@ -288,13 +302,14 @@ public class Facade {
     public void Crear_reserva() {
         
         Usuario pas= new Pasajero();
+        Ruta ruta= new Ruta();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = pas.existe(nombre, "pasajero");
+        boolean existe = this.existe(nombre, "pasajero");
         if (existe) {
-            String ruta = JOptionPane.showInputDialog("Escriba el nombre de la ruta");
-            if (this.ruta.existe(ruta)) {
+            String rutan = JOptionPane.showInputDialog("Escriba el nombre de la ruta");
+            if (this.existe(rutan)) {
                 String p_encuentro = JOptionPane.showInputDialog("Ingrese el punto de encuentro");
-                Reserva res = new Reserva(nombre, ruta, p_encuentro);
+                Reserva res = new Reserva(nombre, rutan, p_encuentro);
                 pas.add(res);
                 JOptionPane.showMessageDialog(null, "Reserva creada satisfactoriamente");
             }
@@ -306,11 +321,21 @@ public class Facade {
         
     }
     
+    private boolean existe(String ruta){
+        boolean existe= false;
+        for(Ruta xxx: misrutas){
+            if(xxx.getNombre().equals(ruta)){
+                existe= true;
+            }
+        }        
+    return existe;
+    }
+    
     public void Consultar_reservas() {
         
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = pas.existe(nombre, "pasajero");
+        boolean existe = this.existe(nombre, "pasajero");
         if (existe) {
            pas= pas.getUser(nombre, "pasajero");
            Pasajero pasajero = (Pasajero) pas;
@@ -328,7 +353,7 @@ public class Facade {
         
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = pas.existe(nombre, "pasajero");
+        boolean existe = this.existe(nombre, "pasajero");
         if (existe) {
            pas= pas.getUser(nombre, "pasajero");
            Pasajero pasajero = (Pasajero) pas;
@@ -338,7 +363,7 @@ public class Facade {
            }
            String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre del ruta ha modificar");           
            for(Reserva xxx:reservas){               
-               if(xxx.getRuta().equals(nombreRuta)){
+               if(xxx.getRuta().equalsIgnoreCase(nombreRuta)){
                    String posicionNueva = JOptionPane.showInputDialog("Escriba el nuevo punto de encuentro");
                    xxx.setP_encuentro(posicionNueva);
                }                        
@@ -352,7 +377,7 @@ public class Facade {
     public void Eliminar_reserva(){        
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = pas.existe(nombre, "pasajero");
+        boolean existe = this.existe(nombre, "pasajero");
         if (existe) {
            pas= pas.getUser(nombre, "pasajero");
            Pasajero pasajero = (Pasajero) pas;
@@ -373,13 +398,37 @@ public class Facade {
         }
     
     }
+
+    public  ArrayList<Usuario> getMisusers() {
+        return misusers;
+    }
+
+    public  void setMisusers(ArrayList<Usuario> misusers) {
+        Facade.misusers = misusers;
+    }
+
+    public  ArrayList<Ruta> getMisrutas() {
+        return misrutas;
+    }
+
+    public  void setMisrutas(ArrayList<Ruta> misrutas) {
+        Facade.misrutas = misrutas;
+    }
+
+    public  ArrayList<Reserva> getMisreservas() {
+        return misreservas;
+    }
+
+    public  void setMisreservas(ArrayList<Reserva> misreservas) {
+        Facade.misreservas = misreservas;
+    }
     
     public void Pagar_cuenta() {
         
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
         String conductor = "";
-        boolean existe = pas.existe(nombre, "pasajero");
+        boolean existe = this.existe(nombre, "pasajero");
         if (existe) {
             pas = pas.getUser(nombre, "pasajero");
             Pasajero pasajero = (Pasajero) pas;
@@ -389,9 +438,9 @@ public class Facade {
             }
             String nombreRuta = JOptionPane.showInputDialog("Escriba el nombre del ruta para pagar la reserva");
             for (Reserva xxx : reservas) {
-                if (xxx.getRuta().equals(nombreRuta)) {
+                if (xxx.getRuta().equalsIgnoreCase(nombreRuta)) {
                     for (Ruta rrr : misrutas) {
-                        if (nombreRuta.equals(rrr.getNombre())) {
+                        if (nombreRuta.equalsIgnoreCase(rrr.getNombre())) {
                             conductor = rrr.getConductor();
                         }
                     }
@@ -449,5 +498,11 @@ public class Facade {
             this.Crear_reserva();
         }
     }
-
+    public void addruta(Ruta r){
+        misrutas.add(r);
+    }
+    public void addusu(Usuario u)
+    {
+        misusers.add(u);
+    }
 }

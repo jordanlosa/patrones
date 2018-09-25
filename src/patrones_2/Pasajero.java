@@ -7,7 +7,6 @@ package patrones_2;
 
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import static patrones_2.Facade.misusers;
 /**
  *
  * @author JORDAN
@@ -27,12 +26,13 @@ public class Pasajero extends Usuario {
         super();        
     }
                    
-     public void adicionar(String nombre, String correo, String password) {
+     public void adicionar(String nombre, String correo, String password,Facade f) {
         this.nombre=nombre;
         this.correo=correo;
         this.password=password;
         this.tipo = "pasajero";
-        misusers.add(this);                
+        Facade fac = f;
+        f.addusu(this);        
     }    
     
     void modificar(String nombre, String correo, String password) {        

@@ -5,7 +5,7 @@
  */
 package patrones_2;
 
-import static patrones_2.Facade.misusers;
+import java.util.ArrayList;
 
 import javax.swing.JOptionPane;
 
@@ -26,7 +26,7 @@ public class Administrador {
         adm.numero=numero;
         misusers.add(adm);*/
     }
-    public void read()
+    /*public void read()
     {
         for(int x=0;x<misusers.size();x++)
         {
@@ -35,9 +35,11 @@ public class Administrador {
               System.out.println(misusers.get(x).password);
                System.out.println(misusers.get(x).tipo);
         }
-    }
-    public void update(String nombre, String correo, String numero)
+    }*/
+    public void update(String nombre, String correo, String numero,Facade f)
     {
+        Facade fac = f;
+        ArrayList<Usuario> misusers = fac.getMisusers();
                 try
         {                        
             boolean encontrado = false;                       
@@ -57,9 +59,12 @@ public class Administrador {
         {
             System.out.println("Error <<<<<<<<<<<<<<<<<<<<<<<" + e);
         }
+       
     }
-    public void delete(String nombre)
+    public void delete(String nombre, Facade f)            
     {
+        Facade fac= f;
+        ArrayList<Usuario> misusers = fac.getMisusers();
          try
         {                                                         
             for(Usuario xxx:misusers)            

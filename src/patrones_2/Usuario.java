@@ -36,7 +36,9 @@ abstract Usuario getUser(String nombre, String tipo);
 
 
 
-public void eliminar(String nombre) {
+public void eliminar(String nombre, Facade f) {
+    Facade fac = f;
+      ArrayList<Usuario> misusers = fac.getMisusers();
          try
         {                                                         
             for(Usuario xxx:misusers)            
@@ -66,19 +68,7 @@ public void eliminar(String nombre) {
         }
     }    
     
-    public boolean existe(String nombre, String tipo) {  
-        
-        boolean existe= false;
-        for(Usuario xxx:misusers)   
-        {
-            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {
-            existe = true;
-
-            }
-        }
-        return existe ;
-    }  
-
+   
     public void add(Reserva res) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }

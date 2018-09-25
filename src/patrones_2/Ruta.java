@@ -6,7 +6,7 @@
 package patrones_2;
 
 import java.util.ArrayList;
-import static patrones_2.Facade.misrutas;
+
 
 
 /**
@@ -40,12 +40,13 @@ public class Ruta implements Componente {
         
         
     }
-    public Ruta(String nombre, String conductor)
+    public Ruta(String nombre, String conductor,Facade f)
     {
         this.Nombre = nombre;
         this.Objetos = new ArrayList<Componente>();
         this.Conductor= conductor;
-        misrutas.add(this);
+        Facade fac = f;
+        f.addruta(this);        
     }
 
     
@@ -84,15 +85,5 @@ public class Ruta implements Componente {
             }            
         }
         return com;        
-    }
-    
-    public boolean existe(String ruta){
-        boolean existe= false;
-        for(Ruta xxx: misrutas){
-            if(xxx.getNombre().equals(ruta)){
-                existe= true;
-            }
-        }        
-    return existe;
-    }
+    }        
 }
