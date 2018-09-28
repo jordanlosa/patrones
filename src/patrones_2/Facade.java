@@ -443,8 +443,7 @@ public class Facade {
             
         int valor= Integer.parseInt(JOptionPane.showInputDialog("Ingrese el valor de la cuenta"));
         String pars= valor+"-"+conductor+"-"+nombre;
-        Component com=  new Pago();
-        com.setComponents(pars);
+        
         
         char opcion = '*';
                     do {
@@ -459,14 +458,14 @@ public class Facade {
                                 String numT= JOptionPane.showInputDialog("Ingrese el numero de tarjeta");
                                 String codSeg= JOptionPane.showInputDialog("Ingrese el codigo de seguridad");
                                 String fechaV= JOptionPane.showInputDialog("Ingrese la fecha de vencimiento");
-
                                 String parametros= numT+"-"+codSeg+"-"+fechaV;
+                                Component com=  new Pago();
+                                com.setComponents(pars);
                                 PagoTC pagotc = new PagoTC(com);
                                 pagotc.setComponents(parametros);
                                 com = pagotc;
                                 JOptionPane.showMessageDialog(null, "Pago satisfactorio");
-                                
-
+                                System.out.println(com.showCuenta());
                                 break;
                             case '2':
                                 String numC = JOptionPane.showInputDialog("Ingrese el numero de cuenta");
@@ -474,18 +473,20 @@ public class Facade {
                                 String cedula = JOptionPane.showInputDialog("Ingrese la cedula");
                                 String contraseña = JOptionPane.showInputDialog("Ingrese la fecha de vencimiento");
                                 String parametros2 = numC+"-"+ tipoC+"-"+ cedula+"-"+ contraseña;
-                                PagoBanco pagobanco = new PagoBanco(com);
+                                Component com1=  new Pago();
+                                com1.setComponents(pars);
+                                PagoBanco pagobanco = new PagoBanco(com1);
                                 pagobanco.setComponents(parametros2);
-                                com= pagobanco;
+                                com1= pagobanco;
                                 JOptionPane.showMessageDialog(null, "Pago satisfactorio");
-              
+                                System.out.println(com1.showCuenta());
                                 break;   
                             case '0':
                                 JOptionPane.showMessageDialog(null, "Atrás");
                                 break;
                         }
                     } while (opcion != '0');
-                    System.out.println(com.showCuenta());
+                    
 
         } else {
             JOptionPane.showMessageDialog(null, "El pasajero no existe");

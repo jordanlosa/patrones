@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author JORDAN
  */
 public class Ruta implements Componente {
-    public  ArrayList<Componente> Objetos;
+    public ArrayList<Componente> Objetos;
 
     private String Nombre;
 
