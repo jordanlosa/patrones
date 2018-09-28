@@ -5,10 +5,55 @@
  */
 package patrones_2;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author JORDAN
  */
-public class Proxy {
+public class Proxy implements IFolder{
+    
+    
+    
+    private Facade fac;
+    private static Proxy unicains = null;
+    ArrayList <Usuario> users2 = fac.getMisusers();
+    
+    
+    public Proxy() {
+        
+    }
+    
+    public static Proxy Reemplazar()
+    {
+        
+        if(unicains == null)
+        {
+            unicains = new Proxy();
+        }
+        return unicains;
+    }
+    
+    
+    @Override
+    public void performOperations(String us, String pas) {
+        
+        boolean existe= false;
+        for(Usuario xxx:users2)   
+        {
+            if (xxx.nombre.equals(us)&& xxx.password.equals(pas)) {
+                existe = true;            
+            }           
+        }
+        if(existe)
+        {
+            fac= new Facade();
+            System.out.print("Acceso permitido");
+        }
+        else
+        {
+            System.out.print("No puede ingresar");
+        }
+    }
     
 }

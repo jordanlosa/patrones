@@ -93,7 +93,7 @@ public class Facade {
         } while (opcion != '0');
     }
     
-     private boolean existe(String nombre, String tipo) {  
+    private boolean existe(String nombre, String tipo) {  
         
         boolean existe= false;
         for(Usuario xxx:misusers)   
@@ -104,7 +104,19 @@ public class Facade {
             }
         }
         return existe ;
-    }  
+    } 
+    public boolean existe_p(String nombre, String pas) {  
+        
+        boolean existe= false;
+        for(Usuario xxx:misusers)   
+        {
+            if (xxx.nombre.equals(nombre)&& xxx.password.equals(pas)) {
+            existe = true;
+
+            }
+        }
+        return existe ;
+    } 
 
 
     public void Crear_ruta() {
