@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @author JORDAN
  */
 public class Ruta implements Componente {
-    public static ArrayList<Componente> Objetos;
+    public  ArrayList<Componente> Objetos;
 
     private String Nombre;
 
@@ -36,17 +36,13 @@ public class Ruta implements Componente {
     }
     
     public Ruta() {
-        this.Objetos = new ArrayList<Componente>();
-        
-        
+        this.Objetos = new ArrayList<Componente>();                
     }
-    public Ruta(String nombre, String conductor,Facade f)
+    public Ruta(String nombre, String conductor)
     {
         this.Nombre = nombre;
         this.Objetos = new ArrayList<Componente>();
-        this.Conductor= conductor;
-        Facade fac = f;
-        f.addruta(this);        
+        this.Conductor= conductor;              
     }
 
     
@@ -54,7 +50,7 @@ public class Ruta implements Componente {
     public String Mostrar() {
         String Ruta = "";
         Ruta = Ruta + "El nombre de la ruta es: "+this.Nombre + "\n" +
-        "El conductor es: "+this.Conductor + "\n";               
+        "El conductor es: "+this.Conductor + "\n";           
         for(Componente c:this.Objetos) 
         {                       
             Ruta = Ruta + c.Mostrar() + "\n";            
@@ -69,8 +65,7 @@ public class Ruta implements Componente {
             }
         }
             
-    }
-    
+    }    
     public void add(Componente c)
     {
         Objetos.add(c);

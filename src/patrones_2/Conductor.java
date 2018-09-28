@@ -30,7 +30,7 @@ public class Conductor extends Usuario{
         this.correo =correo;
         this.password = password;
         this.tipo = "conductor";
-        f.addusu(this);        
+        f.addusu(this);                
     }    
     
     public void modificar(String nombre, String correo, String password, Facade f) {        

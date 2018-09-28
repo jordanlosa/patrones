@@ -22,6 +22,9 @@ public class Patrones_2 {
         // TODO code application logic here
         
         
+        Facade fac = new Facade();
+        Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
+        Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123-456");
         Componente c1 = new Calle("Calle1",78,98,67,54,53,52);
         Componente c2 = new Calle("Calle2",78,98,67,54,53,52);
         Componente c3 = new Calle("Calle3",78,98,67,54,53,52);
@@ -30,16 +33,16 @@ public class Patrones_2 {
         Componente c6 = new Calle("Calle6",78,98,67,54,53,52);
         
         Ruta rut = new Ruta();
+        rut.setNombre("Todas");
+        rut.setConductor("otro");
         rut.add(c1);
         rut.add(c2);
         rut.add(c3);
         rut.add(c4);
         rut.add(c5);
         rut.add(c6);
-        
-       Facade fac = new Facade();
-        Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
-        Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123-456");
+        fac.addruta(rut);
+       
         fac.addusu(pas);
         fac.addusu(con);        
         String opcion = "*";   

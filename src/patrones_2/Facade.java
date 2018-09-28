@@ -110,16 +110,13 @@ public class Facade {
     public void Crear_ruta() {
 
         double xo, yo, xd, yd;
-        double Distancia, Tiempo;
-        String callenombre;
-        Usuario con = new Conductor();
-        Usuario pas= new Pasajero();
+        double Distancia, Tiempo;     
         String conductor = JOptionPane.showInputDialog("Ingrese el nombre del conductor");
 
         boolean existe = this.existe(conductor, "conductor");
         if (existe) {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
-            Ruta nurut = new Ruta(nombre, conductor,this);
+            Ruta nurut = new Ruta(nombre, conductor);
             Componente calle;
             char opcion = '*';
             do {
@@ -131,6 +128,7 @@ public class Facade {
 
                 switch (opcion) {
                     case '1':
+                        String callenombre = "";
                         callenombre = JOptionPane.showInputDialog("nombre de la calle");
                         xo = Double.parseDouble(JOptionPane.showInputDialog("coordenada x inicio"));
                         yo = Double.parseDouble(JOptionPane.showInputDialog("coordenada y inicio"));
@@ -141,24 +139,26 @@ public class Facade {
                         calle = new Calle(callenombre, xo, yo, xd, yd, Distancia, Tiempo);
                         misrutas.get(0).add(calle);
                         nurut.add(calle);
-                        nurut.Mostrar();
+                        System.out.println(nurut.Mostrar());
                         break;
                     case '2':
-                        System.out.print(this.Mostrar());
-                        callenombre = JOptionPane.showInputDialog("Ingrese el nombre de la calle que desea agregar");
-                        nurut.add(this.Buscar(callenombre));
-                        nurut.Mostrar();
+                        String callenombre2 ="";
+                        System.out.println(this.misrutas.get(0).Mostrar());
+                        callenombre2 = JOptionPane.showInputDialog("Ingrese el nombre de la calle que desea agregar");
+                        nurut.add(this.Buscar(callenombre2));
+                        System.out.println(nurut.Mostrar());
                         break;
                     case '0':
                         JOptionPane.showMessageDialog(null, "Atrás");
                         break;
                 }
-            } while (opcion != '0');
+            } while (opcion != '0');  
+            misrutas.add(nurut);
         } else {
             JOptionPane.showMessageDialog(null, "El conductor " + conductor + " no existe");
             this.Crear_ruta();
         }
-        
+        System.out.print(this.misrutas.size());
     }
 
     public void Acceder_sistema() {
@@ -190,21 +190,15 @@ public class Facade {
         return (Calle) misrutas.get(0).getCalle(nombre);        
     }
     
-    public void Rutas_Conductor (){
-        Usuario con = new Conductor();
-        Usuario pas= new Pasajero();
+    public void Rutas_Conductor (){                
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
         boolean existe = this.existe(nombre, "conductor");
         if (existe){
-            for (Ruta xxx:misrutas){
-                if (xxx.getConductor().equalsIgnoreCase(nombre)){
-                xxx.Mostrar();
-                }
-                else System.out.println("El conductor "+nombre+ " no tiene rutas asignadas aún");
+            for (Ruta xxx:misrutas){ 
+                if(xxx.getConductor().equalsIgnoreCase(nombre)) System.out.print(xxx.Mostrar());                                    
             }
         }
         else System.out.println("El conductor "+nombre+ " no existe");
- 
     }
     
     public void Editar_Ruta() {
