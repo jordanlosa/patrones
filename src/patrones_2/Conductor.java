@@ -17,9 +17,8 @@ public class Conductor extends Usuario{
         
     
 
-    public Conductor( String nombre, String correo, String password) {
-        super(nombre, correo, password, "conductor");
-        
+    public Conductor(String nombre, String correo, String password) {
+        super(nombre, correo, password, "conductor");        
     }
 
     public Conductor() {

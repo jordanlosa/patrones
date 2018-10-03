@@ -22,9 +22,9 @@ public class Patrones_2 {
         // TODO code application logic here
         
         
-        Facade fac = new Facade();
-        Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123-456");
-        Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123-456");
+        Facade fac = Facade.Reemplazar();
+        Usuario con = new Conductor("Jordan","jordan@unisabana.edu.co","123");
+        Usuario pas = new Pasajero("Juan","jordan@unisabana.edu.co","123");
         Componente c1 = new Calle("Calle1",78,98,67,54,53,52);
         Componente c2 = new Calle("Calle2",78,98,67,54,53,52);
         Componente c3 = new Calle("Calle3",78,98,67,54,53,52);
@@ -68,8 +68,11 @@ public class Patrones_2 {
                 case "1":                                             
                     fac.Crear_usuario();
                 break;
-                case "2":                    
-                    fac.Acceder_sistema();
+                case "2":                                        
+                    Proxy pro = Proxy.Reemplazar();
+                    String nombre = JOptionPane.showInputDialog("Ingrese al nombre");
+                    String password = JOptionPane.showInputDialog("Password");       
+                    pro.performOperations(nombre, password);
                 break;
                 case "3":
                     fac.Crear_ruta();

@@ -15,12 +15,13 @@ import javax.swing.JOptionPane;
  */
 public class Administrador {    
 
-    AdaptadorAdmin adm= new AdaptadorAdmin();
+    
     public Administrador() {
         
     }            
     public void create(String nombre, String correo, String numero,Facade f)            
-    {       
+    {      
+        AdaptadorAdmin adm= new AdaptadorAdmin();
         adm.nombre=nombre;
         adm.correo=correo;
         adm.password=numero;

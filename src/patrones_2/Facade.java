@@ -17,9 +17,16 @@ public class Facade {
     private static ArrayList<Usuario> misusers = new ArrayList<>();    
     private static ArrayList<Ruta> misrutas= new ArrayList<>();
     private static ArrayList<Reserva> misreservas= new ArrayList<>();
+    private static Facade FacadeU = null;
     
     
-    
+    public static Facade Reemplazar (){
+         if(FacadeU == null)
+        {
+            FacadeU = new Facade();
+        }
+        return FacadeU;
+    }
 
     public void Crear_usuario() {
 

@@ -20,7 +20,7 @@ abstract public class Usuario {
  
 
 
-public Usuario(String nombre, String correo, String passwords,String tipo) {
+public Usuario(String nombre, String correo, String password,String tipo) {
         
         this.nombre = nombre;
         this.correo = correo;

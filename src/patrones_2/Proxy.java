@@ -15,7 +15,7 @@ public class Proxy implements IFolder{
     
     
     
-    private Facade fac;
+    private Facade fac = Facade.Reemplazar();
     private static Proxy unicains = null;
     ArrayList <Usuario> users2 = fac.getMisusers();
     
@@ -38,16 +38,15 @@ public class Proxy implements IFolder{
     @Override
     public void performOperations(String us, String pas) {
         
-        boolean existe= false;
+        boolean existe= false;        
         for(Usuario xxx:users2)   
-        {
+        {            
             if (xxx.nombre.equals(us)&& xxx.password.equals(pas)) {
                 existe = true;            
-            }           
+            }        
         }
         if(existe)
-        {
-            fac= new Facade();
+        {            
             System.out.print("Acceso permitido");
         }
         else
