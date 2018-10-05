@@ -36,23 +36,15 @@ public class Proxy implements IFolder{
     
     
     @Override
-    public void performOperations(String us, String pas) {
-        
-        boolean existe= false;        
+    public String performOperations(String us, String pas) {                
+        String re = "";  
         for(Usuario xxx:users2)   
         {            
             if (xxx.nombre.equals(us)&& xxx.password.equals(pas)) {
-                existe = true;            
+                re = "true"+"-"+xxx.tipo;            
             }        
-        }
-        if(existe)
-        {            
-            System.out.print("Acceso permitido");
-        }
-        else
-        {
-            System.out.print("No puede ingresar");
-        }
+        }        
+        return re;
     }
     
 }

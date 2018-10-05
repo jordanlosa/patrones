@@ -10,5 +10,5 @@ package patrones_2;
  * @author JORDAN
  */
 public interface IFolder {
-    public void performOperations(String us, String pas);
+    public String performOperations(String us, String pas);
 }

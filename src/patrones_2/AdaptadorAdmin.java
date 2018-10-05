@@ -12,8 +12,8 @@ package patrones_2;
 public class AdaptadorAdmin extends Usuario {
     private Administrador admin = new Administrador();
 
-    public AdaptadorAdmin(String nombre, String correo, String numero, String tipo) {
-        super(nombre, correo, numero, tipo);        
+    public AdaptadorAdmin(String nombre, String correo, String numero) {
+        super(nombre, correo, numero, "administrador");        
     }
     public AdaptadorAdmin()
     {
