@@ -6,6 +6,7 @@
 package patrones_2;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  *
@@ -15,9 +16,9 @@ public class Proxy implements IFolder{
     
     
     
-    private Facade fac = Facade.Reemplazar();
+    private UsuarioFactory fac = UsuarioFactory.Reemplazar();
     private static Proxy unicains = null;
-    ArrayList <Usuario> users2 = fac.getMisusers();
+    private HashMap<String, Usuario> users2 = fac.gethash();
     
     
     public Proxy() {
@@ -37,13 +38,10 @@ public class Proxy implements IFolder{
     
     @Override
     public String performOperations(String us, String pas) {                
-        String re = "";  
-        for(Usuario xxx:users2)   
-        {            
-            if (xxx.nombre.equals(us)&& xxx.password.equals(pas)) {
-                re = "true"+"-"+xxx.tipo;            
-            }        
-        }        
+        String re = "";           
+            if (users2.get(us)!=null&&users2.get(us).getPassword().equals(pas)) {
+                re = "true"+"-"+users2.get(us).getTipo();            
+            }                    
         return re;
     }
     

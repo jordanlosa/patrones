@@ -26,21 +26,12 @@ public class AdaptadorAdmin extends Usuario {
     
     public void buscar(Facade f) {
         this.admin.read(f);
-    }
-
-    @Override
-    void adicionar(String nombre, String correo, String numero,Facade f) {
-        this.admin.create(nombre, correo, numero, f);        
-    }
-
-    @Override
+    }    
+    void adicionar(String nombre, String correo, String numero) {
+        this.admin.create(nombre, correo, numero);        
+    }    
     void modificar(String nombre, String correo, String numero,Facade f) {
         this.admin.update(nombre, correo, numero,f);
-    }    
-
-    @Override
-    Usuario getUser(String nombre, String tipo, Facade f) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    }          
     
 }

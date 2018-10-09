@@ -12,67 +12,52 @@ import java.util.ArrayList;
  * @author JORDAN
  */
 abstract public class Usuario {
-    
-  String nombre;
-  String correo;
-  String password;
-  String tipo;
- 
 
+    private String nombre;
+    private String correo;
+    private String password;
+    private String tipo;
 
-public Usuario(String nombre, String correo, String password,String tipo) {
-        
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+
+    public Usuario(String nombre, String correo, String password, String tipo) {
+
         this.nombre = nombre;
         this.correo = correo;
         this.password = password;
         this.tipo = tipo;
-    }  
-public Usuario() {        
-    }  
-
-abstract void adicionar(String nombre, String correo, String password, Facade f);
-abstract void modificar(String nombre, String correo, String password, Facade f);   
-abstract Usuario getUser(String nombre, String tipo, Facade f);
-
-
-
-public void eliminar(String nombre, Facade f) {
-    Facade fac = f;
-      ArrayList<Usuario> misusers = fac.getMisusers();
-         try
-        {                                                         
-            for(Usuario xxx:misusers)            
-            {
-                if(xxx.nombre.equals(nombre))
-                {                      
-                   misusers.remove(xxx);
-                   System.out.println("eliminado");
-                }            
-            }            
-        }
-        catch(Exception e)
-        {
-            
-        }
     }
 
-    public void buscar(String nombre, Facade f) {        
-        Facade fac = f;
-      ArrayList<Usuario> misusers = fac.getMisusers();
-        for(Usuario xxx:misusers)   
-        {
-            if (xxx.nombre.equals(nombre)) {
-            System.out.println(xxx.nombre);
-            System.out.println(xxx.correo);
-            System.out.println(xxx.password);            
-            System.out.println(xxx.tipo);
-            }
-        }
-    }    
-    
-   
-    public void add(Reserva res) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
+    public Usuario() {
+    }                    
 }

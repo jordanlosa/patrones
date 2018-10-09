@@ -16,10 +16,14 @@ public class Patrones_2 {
     /**
      * @param args the command line arguments
      */
+    private void comi(){
+        
+    }
     public static void main(String[] args) {
         // TODO code application logic here
-
+        
         Facade fac = Facade.Reemplazar();
+        UsuarioFactory Factory = UsuarioFactory.Reemplazar();
         Usuario con = new Conductor("Jordan", "jordan@unisabana.edu.co", "123");
         Usuario pas = new Pasajero("Juan", "jordan@unisabana.edu.co", "123");
         Usuario ad = new AdaptadorAdmin("admin", "jordan@unisabana.edu.co", "123");
@@ -39,13 +43,14 @@ public class Patrones_2 {
         rut.add(c4);
         rut.add(c5);
         rut.add(c6);
+        
         fac.addruta(rut);
-
-        fac.addusu(pas);
-        fac.addusu(con);
-        fac.addusu(ad);
-        String opcion = "*";
-        String validacion = "";
+        Factory.adicionar(pas.getNombre(),pas);
+        Factory.adicionar(con.getNombre(),con);
+        Factory.adicionar(ad.getNombre(),ad);
+        
+        String opcion;
+        String validacion;
         Object[] v;
         do {
             Proxy pro = Proxy.Reemplazar();

@@ -14,10 +14,11 @@ import javax.swing.JOptionPane;
  */
 public class Facade {
 
-    private static ArrayList<Usuario> misusers = new ArrayList<>();    
+    //private static ArrayList<Usuario> misusers = new ArrayList<>();    
     private static ArrayList<Ruta> misrutas= new ArrayList<>();
     private static ArrayList<Reserva> misreservas= new ArrayList<>();
     private static Facade FacadeU = null;
+    private static UsuarioFactory factory = UsuarioFactory.Reemplazar();
     
     
     public static Facade Reemplazar (){
@@ -30,9 +31,11 @@ public class Facade {
 
     public void Crear_usuario() {
 
-        Usuario con = new Conductor();
-        Usuario pas= new Pasajero();
-     
+        
+        
+        UsuarioFactory factory = UsuarioFactory.Reemplazar();
+        Usuario us = new Pasajero();
+        Usuario con = new Conductor();        
         Usuario admin = new AdaptadorAdmin();
         
         char opcion = '*';
@@ -54,41 +57,59 @@ public class Facade {
             ).charAt(0);
 
             switch (opcion) {
-                case '1':
-                    con.adicionar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("password"),this);
+                case '1':          
+                    us.setNombre(JOptionPane.showInputDialog("nombre"));
+                    us.setCorreo(JOptionPane.showInputDialog("correo"));
+                    us.setPassword(JOptionPane.showInputDialog("password"));                    
+                    factory.adicionar(us.getNombre(), us);
                     break;
                 case '2':
-                    con.modificar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"),this);
+                    us.setNombre(JOptionPane.showInputDialog("nombre"));
+                    us.setCorreo(JOptionPane.showInputDialog("correo"));
+                    us.setPassword(JOptionPane.showInputDialog("password")); 
+                    factory.actualizar(us.getNombre(), us);
                     break;
                 case '3':
-                    con.buscar(JOptionPane.showInputDialog("nombre"),this);
+                    factory.buscar(JOptionPane.showInputDialog("nombre")).toString();
                     break;
                 case '4':
-                    con.eliminar(JOptionPane.showInputDialog("nombre"),this);
+                    factory.eliminar(JOptionPane.showInputDialog("nombre"));
                     break;
                 case '5':
-                    admin.adicionar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"),this);
+                    admin.setNombre(JOptionPane.showInputDialog("nombre"));
+                    admin.setCorreo(JOptionPane.showInputDialog("correo"));
+                    admin.setPassword(JOptionPane.showInputDialog("password"));
+                    factory.adicionar(admin.getNombre(),admin);
                     break;
                 case '6':
-                    admin.modificar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"),this);
+                    admin.setNombre(JOptionPane.showInputDialog("nombre"));
+                    admin.setCorreo(JOptionPane.showInputDialog("correo"));
+                    admin.setPassword(JOptionPane.showInputDialog("password"));
+                    factory.actualizar(admin.getNombre(),admin);
                     break;
                 case '7':
-                    admin.buscar(JOptionPane.showInputDialog("nombre"),this);
+                    factory.buscar(JOptionPane.showInputDialog("nombre")).toString();
                     break;
                 case '8':
-                    admin.eliminar(JOptionPane.showInputDialog("nombre"),this);
+                    factory.eliminar(JOptionPane.showInputDialog("nombre"));
                     break;
                 case 'a':
-                    pas.adicionar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"),this);
+                    us.setNombre(JOptionPane.showInputDialog("nombre"));
+                    us.setCorreo(JOptionPane.showInputDialog("correo"));
+                    us.setPassword(JOptionPane.showInputDialog("password"));
+                    factory.adicionar(us.getNombre(),us);
                     break;
                 case 'b':
-                    pas.modificar(JOptionPane.showInputDialog("nombre"), JOptionPane.showInputDialog("correo"), JOptionPane.showInputDialog("Password"),this);
+                   us.setNombre(JOptionPane.showInputDialog("nombre"));
+                    us.setCorreo(JOptionPane.showInputDialog("correo"));
+                    us.setPassword(JOptionPane.showInputDialog("password"));
+                    factory.actualizar(us.getNombre(),us);
                     break;
                 case 'c':
-                    pas.buscar(JOptionPane.showInputDialog("nombre"),this);
+                    factory.buscar(JOptionPane.showInputDialog("nombre")).toString();
                     break;
                 case 'd':
-                    pas.eliminar(JOptionPane.showInputDialog("nombre"),this);
+                    factory.eliminar(JOptionPane.showInputDialog("nombre"));
                     break;
                 case '0':
                     JOptionPane.showMessageDialog(null, "Programa terminado....................");
@@ -99,31 +120,7 @@ public class Facade {
             }
         } while (opcion != '0');
     }
-    
-    private boolean existe(String nombre, String tipo) {  
-        
-        boolean existe= false;
-        for(Usuario xxx:misusers)   
-        {
-            if (xxx.nombre.equals(nombre)&& xxx.tipo.equals(tipo)) {
-            existe = true;
-
-            }
-        }
-        return existe ;
-    } 
-    public boolean existe_p(String nombre, String pas) {  
-        
-        boolean existe= false;
-        for(Usuario xxx:misusers)   
-        {
-            if (xxx.nombre.equals(nombre)&& xxx.password.equals(pas)) {
-            existe = true;
-
-            }
-        }
-        return existe ;
-    } 
+      
 
 
     public void Crear_ruta() {
@@ -132,7 +129,7 @@ public class Facade {
         double Distancia, Tiempo;     
         String conductor = JOptionPane.showInputDialog("Ingrese el nombre del conductor");
 
-        boolean existe = this.existe(conductor, "conductor");
+        boolean existe = this.factory.existe(conductor);
         if (existe) {
             String nombre = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
             Ruta nurut = new Ruta(nombre, conductor);
@@ -180,25 +177,8 @@ public class Facade {
         System.out.print(this.misrutas.size());
     }
 
-    public void Acceder_sistema() {
-        String nombre = JOptionPane.showInputDialog("Ingrese al nombre");
-        String password = JOptionPane.showInputDialog("Password");
-        if (this.BuscarUsuario(nombre, password)) {
-            JOptionPane.showInputDialog("Bienvenido");
-        } else {
-            JOptionPane.showInputDialog("Usuario o contraseña incorrecta");
-        }
-    }
-
-    private boolean BuscarUsuario(String nombre, String password) {
-        boolean exist = false;
-        for (Usuario xxx : misusers) {
-            if (xxx.nombre.equals(nombre) && xxx.password.equals(password)) {
-                exist = true;
-            }
-        }
-        return exist;
-    }
+  
+   
 
     private String Mostrar() {
         String todos = "Todas las ruta.......\n";        
@@ -211,7 +191,7 @@ public class Facade {
     
     public void Rutas_Conductor (){                
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        boolean existe = this.existe(nombre, "conductor");
+        boolean existe = this.factory.existe(nombre);
         if (existe){
             for (Ruta xxx:misrutas){ 
                 if(xxx.getConductor().equalsIgnoreCase(nombre)) System.out.print(xxx.Mostrar());                                    
@@ -224,7 +204,7 @@ public class Facade {
         Usuario con = new Conductor();
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        boolean existe = this.existe(nombre, "conductor");
+        boolean existe = this.factory.existe(nombre);
         if (existe) {
             String ruta = JOptionPane.showInputDialog("Ingrese el nombre de la ruta");
             for (Ruta xxx : misrutas) {
@@ -288,7 +268,7 @@ public class Facade {
          Usuario con = new Conductor();
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del conductor");
-        boolean existe = this.existe(nombre, "conductor");
+        boolean existe = this.factory.existe(nombre);
         boolean existeRuta = false;
         if (existe){
             for(Ruta xxx:misrutas){
@@ -314,16 +294,16 @@ public class Facade {
     
     public void Crear_reserva() {
         
-        Usuario pas= new Pasajero();
+        
         Ruta ruta= new Ruta();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = this.existe(nombre, "pasajero");
+        boolean existe = this.factory.existe(nombre);
         if (existe) {
             String rutan = JOptionPane.showInputDialog("Escriba el nombre de la ruta");
             if (this.existe(rutan)) {
                 String p_encuentro = JOptionPane.showInputDialog("Ingrese el punto de encuentro");
                 Reserva res = new Reserva(nombre, rutan, p_encuentro);
-                pas.add(res);
+                this.misreservas.add(res);
                 JOptionPane.showMessageDialog(null, "Reserva creada satisfactoriamente");
             }
 
@@ -348,9 +328,9 @@ public class Facade {
         
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = this.existe(nombre, "pasajero");
+        boolean existe = this.factory.existe(nombre);
         if (existe) {
-           pas= pas.getUser(nombre, "pasajero",this);
+           pas= factory.buscar(nombre);
            Pasajero pasajero = (Pasajero) pas;
            ArrayList<Reserva> reservas = pasajero.getReservas();
            for(Reserva xxx:reservas){
@@ -366,9 +346,9 @@ public class Facade {
         
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = this.existe(nombre, "pasajero");
+        boolean existe = this.factory.existe(nombre);
         if (existe) {
-           pas= pas.getUser(nombre, "pasajero",this);
+           pas= factory.buscar(nombre);
            Pasajero pasajero = (Pasajero) pas;
            ArrayList<Reserva> reservas = pasajero.getReservas();
            for(Reserva xxx:reservas){
@@ -390,9 +370,9 @@ public class Facade {
     public void Eliminar_reserva(){        
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
-        boolean existe = this.existe(nombre, "pasajero");
+        boolean existe = this.factory.existe(nombre);
         if (existe) {
-           pas= pas.getUser(nombre, "pasajero",this);
+           pas= factory.buscar(nombre);
            Pasajero pasajero = (Pasajero) pas;
            ArrayList<Reserva> reservas = pasajero.getReservas();
            String ruta = JOptionPane.showInputDialog("Escriba el nombre de la ruta para eliminar la reserva");
@@ -411,15 +391,7 @@ public class Facade {
         }
     
     }
-
-    public  ArrayList<Usuario> getMisusers() {
-        return misusers;
-    }
-
-    public  void setMisusers(ArrayList<Usuario> misusers) {
-        Facade.misusers = misusers;
-    }
-
+   
     public  ArrayList<Ruta> getMisrutas() {
         return misrutas;
     }
@@ -441,9 +413,9 @@ public class Facade {
         Usuario pas= new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
         String conductor = "";
-        boolean existe = this.existe(nombre, "pasajero");
+        boolean existe = this.factory.existe(nombre);
         if (existe) {
-            pas = pas.getUser(nombre, "pasajero",this);
+            pas = factory.buscar(nombre);
             Pasajero pasajero = (Pasajero) pas;
             ArrayList<Reserva> reservas = pasajero.getReservas();
             for (Reserva xxx : reservas) {
@@ -514,9 +486,5 @@ public class Facade {
     }
     public void addruta(Ruta r){
         misrutas.add(r);
-    }
-    public void addusu(Usuario u)
-    {
-        misusers.add(u);
-    }
+    }    
 }
