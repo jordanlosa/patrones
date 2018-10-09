@@ -332,7 +332,12 @@ public class Facade {
         if (existe) {
            pas= factory.buscar(nombre);
            Pasajero pasajero = (Pasajero) pas;
-           ArrayList<Reserva> reservas = pasajero.getReservas();
+           ArrayList<Reserva> reservas = null;
+           for(Reserva r:misreservas){
+               if(r.getPasajero().equals(pas.getNombre())){
+                   reservas.add(r);
+               }
+           }
            for(Reserva xxx:reservas){
                System.out.println(xxx.toString());
            }
@@ -350,7 +355,12 @@ public class Facade {
         if (existe) {
            pas= factory.buscar(nombre);
            Pasajero pasajero = (Pasajero) pas;
-           ArrayList<Reserva> reservas = pasajero.getReservas();
+           ArrayList<Reserva> reservas = null;
+           for(Reserva r:misreservas){
+               if(r.getPasajero().equals(pas.getNombre())){
+                   reservas.add(r);
+               }
+           }
            for(Reserva xxx:reservas){
                System.out.println(xxx.toString());
            }
@@ -368,13 +378,18 @@ public class Facade {
     }
    
     public void Eliminar_reserva(){        
-        Usuario pas= new Pasajero();
+        Usuario pas = new Pasajero();
         String nombre = JOptionPane.showInputDialog("Escriba el nombre del pasajero");
         boolean existe = this.factory.existe(nombre);
         if (existe) {
            pas= factory.buscar(nombre);
            Pasajero pasajero = (Pasajero) pas;
-           ArrayList<Reserva> reservas = pasajero.getReservas();
+           ArrayList<Reserva> reservas = null;
+           for(Reserva r:misreservas){
+               if(r.getPasajero().equals(pas.getNombre())){
+                   reservas.add(r);
+               }
+           }
            String ruta = JOptionPane.showInputDialog("Escriba el nombre de la ruta para eliminar la reserva");
            for(Reserva xxx:reservas){
                if(xxx.getRuta().equalsIgnoreCase(ruta)){
@@ -417,7 +432,12 @@ public class Facade {
         if (existe) {
             pas = factory.buscar(nombre);
             Pasajero pasajero = (Pasajero) pas;
-            ArrayList<Reserva> reservas = pasajero.getReservas();
+            ArrayList<Reserva> reservas = null;
+           for(Reserva r:misreservas){
+               if(r.getPasajero().equals(pas.getNombre())){
+                   reservas.add(r);
+               }
+           }
             for (Reserva xxx : reservas) {
                 System.out.println(xxx.toString());
             }

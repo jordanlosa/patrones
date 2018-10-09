@@ -11,13 +11,7 @@ import javax.swing.JOptionPane;
  *
  * @author JORDAN
  */
-public class Pasajero extends Usuario {
-    
-    private static ArrayList<Reserva> Reservas= new ArrayList<>();
-
-    public ArrayList<Reserva> getReservas() {
-        return Reservas;
-    }
+public class Pasajero extends Usuario {         
     
     public Pasajero(String nombre, String correo, String password) {
         super(nombre, correo, password,"pasajero");        
